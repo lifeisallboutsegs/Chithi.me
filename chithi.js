@@ -389,6 +389,16 @@ class ChithiService {
     if (content.length < 5) {
       throw new Error("Letter too short!");
     }
+
+    const isValidTheme = this.validateTheme(theme);
+
+    if (!isValidTheme) {
+      throw new Error(
+        `${theme} is not a valid theme. Avaiable themes are ${this.getThemes().join(
+          ", "
+        )}.`
+      );
+    }
     const user = await this.getUserInfo(username);
     const payload = {
       content,
@@ -436,7 +446,7 @@ class ChithiService {
   }
 
   getThemes() {
-    return Object.keys(THEMES).map((key) => ({ value: key }));
+    return Object.keys(THEMES).map((key) => key);
   }
 
   validateTheme(theme) {

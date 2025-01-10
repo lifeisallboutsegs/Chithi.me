@@ -422,7 +422,10 @@ class ChithiService {
   async getUserInfo(username) {
     try {
       const response = await this.client.get(`/api/chithi/users/${username}`);
-      return response.data;
+      return {
+        ...response.data,
+        avatar: `https://chithi.pockethost.io/api/files/${response.data.collectionId}/${response.data.id}/${response.data.avatar}?thumb=300x300f`,
+      };
     } catch (error) {
       throw new Error(`Failed to get user info: ${error.message}`);
     }

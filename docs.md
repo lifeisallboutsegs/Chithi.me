@@ -26,7 +26,7 @@ This package requires the following dependencies:
 
 ### Importing the Package
 ```javascript
-const { ChithiService } = require('chithi-service');
+const { ChithiService } = require('./chithi.js');
 ```
 
 ### Initializing the Service

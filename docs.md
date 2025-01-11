@@ -19,8 +19,6 @@ git clone https://github.com/lifeisallboutsegs/Chithi.me.git
 This package requires the following dependencies:
 - `lz-string`: For compressing and decompressing data.
 - `axios`: For making HTTP requests.
-- A `data.js` file containing `TEMPLATES` and `THEMES` for letters and themes.
-- `wurfl.js`: For detecting device information, such as `form_factor`.
 
 ---
 

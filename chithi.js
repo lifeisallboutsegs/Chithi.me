@@ -39,6 +39,29 @@ class ChithiService {
     );
   }
 
+  async register(username, email, password) {
+    try {
+      const registrationResponse = await this.client.post(
+        "/api/collections/users/records",
+        {
+          username,
+          email,
+          password,
+          passwordConfirm: password
+        }
+      );
+
+      const loginResponse = await this.login(username, password);
+
+      return {
+        registrationData: registrationResponse.data,
+        userData: loginResponse
+      };
+    } catch (error) {
+      throw new Error(`Registration failed: ${error.message}`);
+    }
+  }
+
   async login(identity, password) {
     try {
       const response = await this.client.post(
@@ -118,7 +141,6 @@ class ChithiService {
       throw new Error(`Failed to fetch mailbox: ${error.message}`);
     }
   }
-
 
   async generateLetter(language = "english") {
     const template = TEMPLATES[language] || TEMPLATES.english;
